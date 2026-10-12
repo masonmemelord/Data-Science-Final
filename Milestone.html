@@ -7804,6 +7804,7 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Milestone-1"><strong>Milestone 1</strong><a class="anchor-link" href="#Milestone-1">¶</a></h2><p><strong>Project Title: Modern Recession Detector</strong></p>
 <p><strong>Names: Preston Bukaske, Mason Mitchell</strong></p>
+<p>**Link: <a href="https://masonmemelord.github.io/Data-Science-Final/**">https://masonmemelord.github.io/Data-Science-Final/**</a></p>
 </div>
 </div>
 </div>
@@ -7816,6 +7817,17 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The partners for this project are Preston Bukaske and Mason Mitchell. To answer our question on whether traditional economic indicators are still reliable predictors of U.S. recessions or not, we want to look at various factors, such as unemployment, consumer activity/confidence, defaults, debts, government spending, and GDP growth rate. We want to see if factors such as these can still reliably predict recessions or not.</p>
 <p>Collaboration plan: We plan on meeting two to three times a week to go over the project, ideally over weekends. During these meetings, we will review our progress and decide the current demands of the projects and then divide the workloads based on our own expertise. The technologies we plan on using are primarily going to be Google Docs for collaborative explanations, GitHub to push our changes, and PyNotebooks to process and administer the data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Plan:</strong> To use the data to answer the question, we're going to compare these data sets to recession periods and determine if there's a correlation or if more data is needed. From our three data sets, none of them officially state when a recession has recently occurred, so in the future, we're going to need a data set about recession dates.</p>
 </div>
 </div>
 </div>
@@ -7915,7 +7927,10 @@ Resolving deltas: 100% (1/1), done.
 <div class="highlight hl-python"><pre><span></span><span class="n">firstdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"FEDFUNDS.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"observation_date"</span><span class="p">])</span> <span class="c1">#Opens</span>
 <span class="c1">#the FEDFUNDS file for us to read into, and we parse the dates of</span>
 <span class="c1">#observation_date because it turns the numbers of the string into readable dates</span>
-<span class="n">firstdf</span> <span class="c1">#displays to confirm that it has been successfully read</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firstdf</span><span class="p">)</span> <span class="c1">#displays to confirm that it has been successfully read</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firstdf</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span> <span class="c1">#From here, we see that our dtype is float64 for</span>
+<span class="c1">#the fedfunds and datetime64[ns] for the observation date</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firstdf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1">#Confirms that there are no NaN values</span>
 </pre></div>
 </div>
 </div>
@@ -7925,166 +7940,30 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div class="colab-df-container" id="df-1fed07fa-3f67-4127-8804-f3167c232dc1">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>    observation_date  FEDFUNDS
+0         1954-07-01      0.80
+1         1954-08-01      1.22
+2         1954-09-01      1.07
+3         1954-10-01      0.85
+4         1954-11-01      0.83
+..               ...       ...
+862       2026-05-01      3.63
+863       2026-06-01      3.63
+864       2026-07-01      3.63
+865       2026-08-01      3.63
+866       2026-09-01      3.75
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>observation_date</th>
-<th>FEDFUNDS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1954-07-01</td>
-<td>0.80</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1954-08-01</td>
-<td>1.22</td>
-</tr>
-<tr>
-<th>2</th>
-<td>1954-09-01</td>
-<td>1.07</td>
-</tr>
-<tr>
-<th>3</th>
-<td>1954-10-01</td>
-<td>0.85</td>
-</tr>
-<tr>
-<th>4</th>
-<td>1954-11-01</td>
-<td>0.83</td>
-</tr>
-<tr>
-<th>...</th>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr>
-<th>862</th>
-<td>2026-05-01</td>
-<td>3.63</td>
-</tr>
-<tr>
-<th>863</th>
-<td>2026-06-01</td>
-<td>3.63</td>
-</tr>
-<tr>
-<th>864</th>
-<td>2026-07-01</td>
-<td>3.63</td>
-</tr>
-<tr>
-<th>865</th>
-<td>2026-08-01</td>
-<td>3.63</td>
-</tr>
-<tr>
-<th>866</th>
-<td>2026-09-01</td>
-<td>3.75</td>
-</tr>
-</tbody>
-</table>
-<p>867 rows × 2 columns</p>
-</div>
-<div class="colab-df-buttons">
-<div class="colab-df-container">
-<button class="colab-df-convert" onclick="convertToInteractive('df-1fed07fa-3f67-4127-8804-f3167c232dc1')" style="display:none;" title="Convert this dataframe to an interactive table.">
-<svg height="24px" viewbox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg">
-<path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
-</svg>
-</button>
-<style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-<script>
-      const buttonEl =
-        document.querySelector('#df-1fed07fa-3f67-4127-8804-f3167c232dc1 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-1fed07fa-3f67-4127-8804-f3167c232dc1');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-</div>
-</div>
-</div>
+[867 rows x 2 columns]
+observation_date    datetime64[ns]
+FEDFUNDS                   float64
+dtype: object
+observation_date    0
+FEDFUNDS            0
+dtype: int64
+</pre>
 </div>
 </div>
 </div>
@@ -8110,7 +7989,6 @@ Resolving deltas: 100% (1/1), done.
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dates</span> <span class="c1">#We're working with dates, so we want to import</span>
 <span class="c1">#this library</span>
-
 
 <span class="n">postCovid</span> <span class="o">=</span> <span class="n">firstdf</span><span class="p">[</span><span class="n">firstdf</span><span class="p">[</span><span class="s2">"observation_date"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"2020-04-01"</span><span class="p">]</span> <span class="c1">#We know that</span>
 <span class="c1">#the covid recession ended in April of 2020, so we want to start looking at</span>
@@ -8144,8 +8022,20 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>    observation_date  FEDFUNDS
-789       2020-04-01      0.05
+<pre>     observation_date  FEDFUNDS
+0               False     False
+1               False     False
+2               False     False
+3               False     False
+4               False     False
+..                ...       ...
+862             False     False
+863             False     False
+864             False     False
+865             False     False
+866             False     False
+
+[867 rows x 2 columns]
 </pre>
 </div>
 </div>
@@ -8171,7 +8061,9 @@ Resolving deltas: 100% (1/1), done.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>INTERESTING STATS:</strong></p>
+<p>This graph is relevant to my question because it shows the federal funds rates
+after Covid. We see a significant change after 2022, and we can possibly connect this to recessions and see if there's a pattern or not.
+<strong>INTERESTING STATS:</strong></p>
 </div>
 </div>
 </div>
@@ -8184,11 +8076,15 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">postCovid</span><span class="p">[</span><span class="s2">"FEDFUNDS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="c1">#From here, we see that the average federal</span>
-<span class="c1">#effective funds rates after covid is around 2.9%</span>
+<span class="c1">#effective funds rates after covid is around 2.9%. This is interesting because</span>
+<span class="c1">#it gives us a baseline for the recession after Covid and how the low rates</span>
+<span class="c1">#from the earlier years created a major pull down in the mean.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">postCovid</span><span class="p">[</span><span class="s2">"FEDFUNDS"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="c1">#At the lowest point after covid, the federal</span>
-<span class="c1">#effective funds rate has reached 0.05%</span>
+<span class="c1">#effective funds rate has reached 0.05%. This is interesting because it's nearly</span>
+<span class="c1">#0, showing just how much COVID affected the rates.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">postCovid</span><span class="p">[</span><span class="s2">"FEDFUNDS"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="c1">#Since after covid, the highest the federal</span>
-<span class="c1">#effective fund rates have been was 5.33%</span>
+<span class="c1">#effective fund rates have been was 5.33%. This is interesting because it shows</span>
+<span class="c1">#just how much the rates began to rise after Covid started becoming irrelevant.</span>
 </pre></div>
 </div>
 </div>
@@ -8245,7 +8141,14 @@ Resolving deltas: 100% (1/1), done.
 <div class="highlight hl-python"><pre><span></span><span class="n">seconddf</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"UNRATE.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"observation_date"</span><span class="p">])</span> <span class="c1">#Opens</span>
 <span class="c1">#the unemployment rate file for us to view and parses the dates so we can work</span>
 <span class="c1">#with them later</span>
-<span class="n">seconddf</span> <span class="c1">#prints the dataframe for us to see</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seconddf</span><span class="p">)</span> <span class="c1">#prints the dataframe for us to see</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seconddf</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span> <span class="c1">#From here, we see that our dtype is float64</span>
+<span class="c1"># for UNRATE and datetime64[ns] for observation_date</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seconddf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1">#From here, we see that there's one NaN value</span>
+<span class="c1"># in our UNRATE, so we need to check that before working with the data.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seconddf</span><span class="p">[</span><span class="n">seconddf</span><span class="p">[</span><span class="s2">"UNRATE"</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()])</span> <span class="c1">#From here, we see that the</span>
+<span class="c1">#missing value is from around the time the government shutdown occurred,</span>
+<span class="c1">#so we can ignore this and proceed since it will just be a gap in the graph.</span>
 </pre></div>
 </div>
 </div>
@@ -8255,166 +8158,32 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div class="colab-df-container" id="df-ab675ca2-e8e9-424f-b3c4-ce7451b59279">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>    observation_date  UNRATE
+0         1948-01-01     3.4
+1         1948-02-01     3.8
+2         1948-03-01     4.0
+3         1948-04-01     3.9
+4         1948-05-01     3.5
+..               ...     ...
+940       2026-05-01     4.3
+941       2026-06-01     4.2
+942       2026-07-01     4.1
+943       2026-08-01     4.1
+944       2026-09-01     4.2
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>observation_date</th>
-<th>UNRATE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1948-01-01</td>
-<td>3.4</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1948-02-01</td>
-<td>3.8</td>
-</tr>
-<tr>
-<th>2</th>
-<td>1948-03-01</td>
-<td>4.0</td>
-</tr>
-<tr>
-<th>3</th>
-<td>1948-04-01</td>
-<td>3.9</td>
-</tr>
-<tr>
-<th>4</th>
-<td>1948-05-01</td>
-<td>3.5</td>
-</tr>
-<tr>
-<th>...</th>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr>
-<th>940</th>
-<td>2026-05-01</td>
-<td>4.3</td>
-</tr>
-<tr>
-<th>941</th>
-<td>2026-06-01</td>
-<td>4.2</td>
-</tr>
-<tr>
-<th>942</th>
-<td>2026-07-01</td>
-<td>4.1</td>
-</tr>
-<tr>
-<th>943</th>
-<td>2026-08-01</td>
-<td>4.1</td>
-</tr>
-<tr>
-<th>944</th>
-<td>2026-09-01</td>
-<td>4.2</td>
-</tr>
-</tbody>
-</table>
-<p>945 rows × 2 columns</p>
-</div>
-<div class="colab-df-buttons">
-<div class="colab-df-container">
-<button class="colab-df-convert" onclick="convertToInteractive('df-ab675ca2-e8e9-424f-b3c4-ce7451b59279')" style="display:none;" title="Convert this dataframe to an interactive table.">
-<svg height="24px" viewbox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg">
-<path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
-</svg>
-</button>
-<style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-<script>
-      const buttonEl =
-        document.querySelector('#df-ab675ca2-e8e9-424f-b3c4-ce7451b59279 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-ab675ca2-e8e9-424f-b3c4-ce7451b59279');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-</div>
-</div>
-</div>
+[945 rows x 2 columns]
+observation_date    datetime64[ns]
+UNRATE                     float64
+dtype: object
+observation_date    0
+UNRATE              1
+dtype: int64
+    observation_date  UNRATE
+933       2025-10-01     NaN
+</pre>
 </div>
 </div>
 </div>
@@ -8487,6 +8256,9 @@ Resolving deltas: 100% (1/1), done.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This graph is relevant to my question because it shows the unemployment rates
+after Covid. Since Covid changed how the economy worked for many aspects,
+we want to use this graph to compare it to recessions to determine if there's a pattern, especially with the spike in 2020.</p>
 <p><strong>INTERESTING STATS</strong></p>
 </div>
 </div>
@@ -8500,11 +8272,16 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">afterCovid</span><span class="p">[</span><span class="s2">"UNRATE"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="c1">#From here, we see that since covid,</span>
-<span class="c1">#the average unemployment was around 4.8%</span>
+<span class="c1">#the average unemployment was around 4.8%. This is interesting because it</span>
+<span class="c1">#shows just how much the unemployment rates have been dragged up.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">afterCovid</span><span class="p">[</span><span class="s2">"UNRATE"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="c1">#On this line, we can determine that</span>
-<span class="c1">#at its lowest, the unemployment rate after covid reached 3.4%</span>
+<span class="c1">#at its lowest, the unemployment rate after covid reached 3.4%. This is</span>
+<span class="c1">#interesting because this is not far from the average, showing that</span>
+<span class="c1">#unemployment rates have improved significantly since covid.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">afterCovid</span><span class="p">[</span><span class="s2">"UNRATE"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="c1">#Through this line, we can determine that</span>
-<span class="c1">#at its highest, the unemployment rate after covid reached 14.8%</span>
+<span class="c1">#at its highest, the unemployment rate after covid reached 14.8%. This is</span>
+<span class="c1">#interesting because it shows just how much Covid has affected unemployment,</span>
+<span class="c1">#seeing that the rate is around 3 times the average.</span>
 </pre></div>
 </div>
 </div>
@@ -8558,8 +8335,16 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">thirddf</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"RRSFS.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"observation_date"</span><span class="p">])</span>
-<span class="n">thirddf</span>
+<div class="highlight hl-python"><pre><span></span><span class="n">thirddf</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"RRSFS.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"observation_date"</span><span class="p">])</span> <span class="c1">#Opens the</span>
+<span class="c1">#third dataframe for us to view</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thirddf</span><span class="p">)</span> <span class="c1">#prints the dataframe to confirm it can be read</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thirddf</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span> <span class="c1">#From here, we see that our types are float64 for</span>
+<span class="c1">#RRSFS and datetime64[ns] for observation_date</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thirddf</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="c1">#From here, we see we have a NaN value for one of</span>
+<span class="c1">#the RRSFS values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thirddf</span><span class="p">[</span><span class="n">thirddf</span><span class="p">[</span><span class="s2">"RRSFS"</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()])</span> <span class="c1">#From here, we see that this NaN</span>
+<span class="c1">#value is just from the government shut down, so it's just going to appear as a</span>
+<span class="c1">#gap in the graph. We don't need to worry about this.</span>
 </pre></div>
 </div>
 </div>
@@ -8569,166 +8354,32 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div class="colab-df-container" id="df-54c8b7cd-a902-49aa-9ee5-d2e3d97c84d7">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>    observation_date     RRSFS
+0         1992-01-01  115095.0
+1         1992-02-01  114855.0
+2         1992-03-01  114052.0
+3         1992-04-01  114721.0
+4         1992-05-01  114868.0
+..               ...       ...
+411       2026-04-01  228364.0
+412       2026-05-01  229413.0
+413       2026-06-01  231107.0
+414       2026-07-01  229697.0
+415       2026-08-01  231630.0
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>observation_date</th>
-<th>RRSFS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1992-01-01</td>
-<td>115095.0</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1992-02-01</td>
-<td>114855.0</td>
-</tr>
-<tr>
-<th>2</th>
-<td>1992-03-01</td>
-<td>114052.0</td>
-</tr>
-<tr>
-<th>3</th>
-<td>1992-04-01</td>
-<td>114721.0</td>
-</tr>
-<tr>
-<th>4</th>
-<td>1992-05-01</td>
-<td>114868.0</td>
-</tr>
-<tr>
-<th>...</th>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr>
-<th>411</th>
-<td>2026-04-01</td>
-<td>228364.0</td>
-</tr>
-<tr>
-<th>412</th>
-<td>2026-05-01</td>
-<td>229413.0</td>
-</tr>
-<tr>
-<th>413</th>
-<td>2026-06-01</td>
-<td>231107.0</td>
-</tr>
-<tr>
-<th>414</th>
-<td>2026-07-01</td>
-<td>229697.0</td>
-</tr>
-<tr>
-<th>415</th>
-<td>2026-08-01</td>
-<td>231630.0</td>
-</tr>
-</tbody>
-</table>
-<p>416 rows × 2 columns</p>
-</div>
-<div class="colab-df-buttons">
-<div class="colab-df-container">
-<button class="colab-df-convert" onclick="convertToInteractive('df-54c8b7cd-a902-49aa-9ee5-d2e3d97c84d7')" style="display:none;" title="Convert this dataframe to an interactive table.">
-<svg height="24px" viewbox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg">
-<path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
-</svg>
-</button>
-<style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-<script>
-      const buttonEl =
-        document.querySelector('#df-54c8b7cd-a902-49aa-9ee5-d2e3d97c84d7 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-54c8b7cd-a902-49aa-9ee5-d2e3d97c84d7');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-</div>
-</div>
-</div>
+[416 rows x 2 columns]
+observation_date    datetime64[ns]
+RRSFS                      float64
+dtype: object
+observation_date    0
+RRSFS               1
+dtype: int64
+    observation_date  RRSFS
+405       2025-10-01    NaN
+</pre>
 </div>
 </div>
 </div>
@@ -8803,6 +8454,7 @@ Resolving deltas: 100% (1/1), done.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This graph is relevant to my question because it shows the retail and food service sales dropping after Covid and then rising rapidly after its initial arrival. We can see if the sale drops are associated with a recession.</p>
 <p><strong>INTERESTING STATS</strong></p>
 </div>
 </div>
@@ -8816,11 +8468,17 @@ Resolving deltas: 100% (1/1), done.
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sinceCovid</span><span class="p">[</span><span class="s2">"RRSFS"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="c1">#From here, we see that after Covid,</span>
-<span class="c1">#the average retail and food service sales was around $220,711 million dollars</span>
+<span class="c1">#the average retail and food service sales was around $220,711 million dollars.</span>
+<span class="c1">#This is interesting because it's fairly close to the max, showing that Covid</span>
+<span class="c1">#hasn't made significant changes to the overall patterns after a while.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sinceCovid</span><span class="p">[</span><span class="s2">"RRSFS"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="c1">#From this line, we can determine that</span>
-<span class="c1">#at its lowest, the retail and food service sales reached $156,632 million</span>
+<span class="c1">#at its lowest, the retail and food service sales reached $156,632 million. This</span>
+<span class="c1">#is interesting because this happened right when the Covid era occurred, showing</span>
+<span class="c1">#just how much sales have plummeted as a result of it.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sinceCovid</span><span class="p">[</span><span class="s2">"RRSFS"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="c1">#Through this line, we can see that</span>
-<span class="c1">#at its highest, the retail and food service sales reached $231,630 million</span>
+<span class="c1">#at its highest, the retail and food service sales reached $231,630 million.</span>
+<span class="c1">#This is important because it's similar to how most of the money is in recent</span>
+<span class="c1">#years, showing how this aspect has stabilized after Covid.</span>
 </pre></div>
 </div>
 </div>
