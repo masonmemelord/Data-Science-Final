@@ -1,1 +1,2 @@
 # Data-Science-Final
+Welcome to the repo for our Intro to Data Science Final. Here we are observing economic movement, FED rates, and unemployment rates for us to better understand when a recession could be coming. Our data sources for our graphs are located within `/Datafiles` and our original notebooks are in the `Notebooks` subfolder. `index.html` is our homepage for our web-facing UI. 
